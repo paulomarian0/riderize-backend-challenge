@@ -8,7 +8,7 @@ const rideRoutes = Router();
 
 rideRoutes.post('/', (req, res) => createRideController.handle(req, res));
 rideRoutes.get('/', (req, res) => listRideController.handle(req, res));
-rideRoutes.put('/', (req, res) => updateRideController.handle(req, res));
-rideRoutes.delete('/', (req, res) => deleteRideController.handle(req, res));
+rideRoutes.put('/:id', (req, res) => updateRideController.handle(req, res));
+rideRoutes.delete('/:id', (req, res) => deleteRideController.handle(req, res));
 
 export { rideRoutes };

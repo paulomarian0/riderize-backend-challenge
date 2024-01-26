@@ -61,7 +61,7 @@ export class UserRepositoryImplementation implements IUserRepository {
   }
 
   async delete(id: string) {
-    await this.repository.ride.delete({
+    await this.repository.user.delete({
       where: {
         id,
       },
