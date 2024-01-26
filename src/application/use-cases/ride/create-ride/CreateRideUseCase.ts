@@ -1,5 +1,5 @@
 import AppError from '../../../adapter/error';
-import { ICreateRideDTO, createSchemaZodValidator } from '../../../dtos/ride/ICreateRideDTO';
+import { ICreateRideDTO, createRideSchemaZodValidator } from '../../../dtos/ride/ICreateRideDTO';
 import { IRideRepository } from '../../../repositories/ride/IRideRepository';
 
 interface IExecute extends ICreateRideDTO {}
@@ -16,7 +16,7 @@ export class CreateRideUseCase {
     participants_limit,
     additional_information,
   }: IExecute): Promise<void> {
-    createSchemaZodValidator.parse({
+    createRideSchemaZodValidator.parse({
       name,
       start_date,
       start_date_registration,

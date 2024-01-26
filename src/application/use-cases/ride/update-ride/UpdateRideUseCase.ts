@@ -1,5 +1,5 @@
 import AppError from '../../../adapter/error';
-import { IUpdateRideDTO, updateSchemaZodValidator } from '../../../dtos/ride/IUpdateRideDTO';
+import { IUpdateRideDTO, updateRideSchemaZodValidator } from '../../../dtos/ride/IUpdateRideDTO';
 import { IRideRepository } from '../../../repositories/ride/IRideRepository';
 
 interface IExecute extends IUpdateRideDTO {}
@@ -7,7 +7,7 @@ export class UpdateRideUseCase {
   constructor(private rideRepository: IRideRepository) {}
 
   async execute({ id, name, start_place, additional_information, participants_limit }: IExecute): Promise<void> {
-    updateSchemaZodValidator.parse({
+    updateRideSchemaZodValidator.parse({
       id,
       name,
       start_place,

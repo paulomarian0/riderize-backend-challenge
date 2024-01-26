@@ -12,4 +12,4 @@ const createRideSchema = z.object({
 
 export type ICreateRideDTO = z.infer<typeof createRideSchema>;
 
-export { createRideSchema as createSchemaZodValidator };
+export { createRideSchema as createRideSchemaZodValidator };

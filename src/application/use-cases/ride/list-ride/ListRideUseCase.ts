@@ -1,4 +1,4 @@
-import { IListRideDTO, listSchemaZodValidator } from '../../../dtos/ride/IListRideDTO';
+import { IListRideDTO, listRideSchemaZodValidator } from '../../../dtos/ride/IListRideDTO';
 import { IRideRepository } from '../../../repositories/ride/IRideRepository';
 
 interface IExecute extends IListRideDTO {}
@@ -7,7 +7,7 @@ export class ListRideUseCase {
   constructor(private rideRepository: IRideRepository) {}
 
   async execute({ id, name, start_date }: IExecute) {
-    listSchemaZodValidator.parse({
+    listRideSchemaZodValidator.parse({
       id,
       name,
       start_date,

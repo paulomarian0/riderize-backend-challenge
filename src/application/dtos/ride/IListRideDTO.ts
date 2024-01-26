@@ -8,4 +8,4 @@ const listRideSchema = z.object({
 
 export type IListRideDTO = z.infer<typeof listRideSchema>;
 
-export { listRideSchema as listSchemaZodValidator };
+export { listRideSchema as listRideSchemaZodValidator };

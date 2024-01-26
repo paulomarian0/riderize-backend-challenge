@@ -10,4 +10,4 @@ const updateRideSchema = z.object({
 
 export type IUpdateRideDTO = z.infer<typeof updateRideSchema>;
 
-export { updateRideSchema as updateSchemaZodValidator };
+export { updateRideSchema as updateRideSchemaZodValidator };
