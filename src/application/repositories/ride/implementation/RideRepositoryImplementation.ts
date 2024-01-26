@@ -44,7 +44,7 @@ export class RideRepositoryImplementation implements IRideRepository {
   }
 
   async find({ id, name, start_date }: IListRideDTO) {
-    return await this.repository.ride.findFirst({
+    return await this.repository.ride.findUnique({
       where: {
         id,
         name,
