@@ -1,6 +1,6 @@
 import express from 'express';
-import { appRoutes } from './routes';
 import cors from 'cors';
+import { appRoutes } from './infra/routes';
 
 const PORT = process.env.PORT ?? 3000;
 

@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { listRideController } from '../../use-cases/ride/list-ride';
-import { createRideController } from '../../use-cases/ride/create-ride';
-import { updateRideController } from '../../use-cases/ride/update-ride';
-import { deleteRideController } from '../../use-cases/ride/delete-ride';
+import { listRideController } from '../../../use-cases/ride/list-ride';
+import { createRideController } from '../../../use-cases/ride/create-ride';
+import { updateRideController } from '../../../use-cases/ride/update-ride';
+import { deleteRideController } from '../../../use-cases/ride/delete-ride';
 
 const rideRoutes = Router();
 

@@ -3,8 +3,8 @@ import { rideRoutes } from './ride/ride-routes';
 import { userRoutes } from './users/user-routes';
 import { eventRoutes } from './event';
 import { authRoutes } from './auth';
-import { AuthUseCase } from '../use-cases/auth/AuthUseCase';
-import AuthMiddleware from '../infra/middlewares/auth';
+import { AuthUseCase } from '../../use-cases/auth/AuthUseCase';
+import AuthMiddleware from '../../infra/middlewares/auth';
 
 const appRoutes = Router();
 

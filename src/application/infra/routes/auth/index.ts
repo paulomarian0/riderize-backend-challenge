@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { authController } from '../../use-cases/auth';
+import { authController } from '../../../use-cases/auth';
 
 const authRoutes = Router();
 
