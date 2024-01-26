@@ -1,4 +1,5 @@
 export interface IUpdateRideDTO {
+  id: string;
   name: string;
   start_date: Date;
   start_date_registration: Date;
