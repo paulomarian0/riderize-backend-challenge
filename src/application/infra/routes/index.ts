@@ -11,11 +11,11 @@ const appRoutes = Router();
 const authService = new AuthUseCase();
 const authMiddleware = new AuthMiddleware(authService);
 
-appRoutes.use(authMiddleware.authenticateToken);
+appRoutes.use('/auth', authRoutes);
 
+appRoutes.use(authMiddleware.authenticateToken);
 appRoutes.use('/ride', rideRoutes);
 appRoutes.use('/user', userRoutes);
 appRoutes.use('/event', eventRoutes);
-appRoutes.use('/auth', authRoutes);
 
 export { appRoutes };
