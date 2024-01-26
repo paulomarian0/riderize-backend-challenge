@@ -1,10 +1,13 @@
-export interface IUpdateRideDTO {
-  id: string;
-  name: string;
-  start_date: Date;
-  start_date_registration: Date;
-  end_date_registration: Date;
-  additional_information?: string;
-  start_place: string;
-  participants_limit?: number;
-}
+import { z } from 'zod';
+
+const updateRideSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  additional_information: z.string().optional(),
+  start_place: z.string(),
+  participants_limit: z.coerce.number().optional(),
+});
+
+export type IUpdateRideDTO = z.infer<typeof updateRideSchema>;
+
+export { updateRideSchema as updateSchemaZodValidator };
