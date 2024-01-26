@@ -23,9 +23,9 @@ export class UserRepositoryImplementation implements IUserRepository {
   async count({ id, email, name }: IListUsersDTO) {
     return await this.repository.user.count({
       where: {
-        id,
-        email,
-        name,
+        id: id ? { equals: id } : undefined,
+        email: email ? { contains: email } : undefined,
+        name: name ? { contains: name } : undefined,
       },
     });
   }
@@ -46,6 +46,26 @@ export class UserRepositoryImplementation implements IUserRepository {
         id: id ? { equals: id } : undefined,
         email: email ? { contains: email } : undefined,
         name: name ? { contains: name } : undefined,
+      },
+      include: {
+        ride_participant: {
+          select: {
+            id: true,
+            subscription_date: true,
+            ride: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
   }

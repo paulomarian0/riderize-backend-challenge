@@ -36,9 +36,9 @@ export class RideRepositoryImplementation implements IRideRepository {
   async count({ id, name, start_date }: IListRideDTO) {
     return await this.repository.ride.count({
       where: {
-        id,
-        name,
-        start_date,
+        id: id ? { equals: id } : undefined,
+        name: name ? { contains: name } : undefined,
+        start_date: start_date ? { equals: start_date } : undefined,
       },
     });
   }
@@ -46,9 +46,9 @@ export class RideRepositoryImplementation implements IRideRepository {
   async find({ id, name, start_date }: IListRideDTO) {
     return await this.repository.ride.findFirst({
       where: {
-        id,
-        name,
-        start_date,
+        id: id ? { equals: id } : undefined,
+        name: name ? { contains: name } : undefined,
+        start_date: start_date ? { equals: start_date } : undefined,
       },
     });
   }
@@ -56,9 +56,29 @@ export class RideRepositoryImplementation implements IRideRepository {
   async list({ id, name, start_date }: IListRideDTO) {
     return await this.repository.ride.findMany({
       where: {
-        id,
-        name,
-        start_date,
+        id: id ? { equals: id } : undefined,
+        name: name ? { contains: name } : undefined,
+        start_date: start_date ? { equals: start_date } : undefined,
+      },
+      include: {
+        ride_participant: {
+          select: {
+            id: true,
+            subscription_date: true,
+            ride: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
   }
