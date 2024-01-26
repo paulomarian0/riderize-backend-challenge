@@ -31,11 +31,11 @@ export class UserRepositoryImplementation implements IUserRepository {
   }
 
   async find({ id, email, name }: IListUsersDTO) {
-    return await this.repository.user.findUnique({
+    return await this.repository.user.findFirst({
       where: {
-        id,
-        email,
-        name,
+        id: id ? { equals: id } : undefined,
+        email: email ? { contains: email } : undefined,
+        name: name ? { contains: name } : undefined,
       },
     });
   }

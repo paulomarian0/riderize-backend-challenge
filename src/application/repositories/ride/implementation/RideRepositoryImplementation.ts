@@ -44,7 +44,7 @@ export class RideRepositoryImplementation implements IRideRepository {
   }
 
   async find({ id, name, start_date }: IListRideDTO) {
-    return await this.repository.ride.findUnique({
+    return await this.repository.ride.findFirst({
       where: {
         id,
         name,
@@ -63,25 +63,13 @@ export class RideRepositoryImplementation implements IRideRepository {
     });
   }
 
-  async update({
-    id,
-    name,
-    start_date,
-    start_date_registration,
-    end_date_registration,
-    start_place,
-    participants_limit,
-    additional_information,
-  }: IUpdateRideDTO) {
+  async update({ id, name, start_place, participants_limit, additional_information }: IUpdateRideDTO) {
     await this.repository.ride.update({
       where: {
         id,
       },
       data: {
         name,
-        start_date,
-        start_date_registration,
-        end_date_registration,
         start_place,
         participants_limit,
         additional_information,

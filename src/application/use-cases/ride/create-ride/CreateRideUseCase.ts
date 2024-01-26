@@ -16,8 +16,6 @@ export class CreateRideUseCase {
     participants_limit,
     additional_information,
   }: IExecute): Promise<void> {
-    await this.validate({ name });
-
     createSchemaZodValidator.parse({
       name,
       start_date,
@@ -28,6 +26,7 @@ export class CreateRideUseCase {
       participants_limit,
     });
 
+    await this.validate({ name });
     await this.rideRepository.create({
       name,
       start_date,

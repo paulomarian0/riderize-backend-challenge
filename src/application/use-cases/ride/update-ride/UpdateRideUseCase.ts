@@ -7,8 +7,6 @@ export class UpdateRideUseCase {
   constructor(private rideRepository: IRideRepository) {}
 
   async execute({ id, name, start_place, additional_information, participants_limit }: IExecute): Promise<void> {
-    await this.validate({ id, name });
-
     updateSchemaZodValidator.parse({
       id,
       name,
@@ -17,6 +15,7 @@ export class UpdateRideUseCase {
       participants_limit,
     });
 
+    await this.validate({ id, name });
     await this.rideRepository.update({
       id,
       name,
