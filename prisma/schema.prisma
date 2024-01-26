@@ -19,7 +19,7 @@ model user {
 
 model ride {
   id                      String   @id @default(uuid())
-  name                    String
+  name                    String   @unique
   start_date              DateTime
   start_date_registration DateTime
   end_date_registration   DateTime
