@@ -1,6 +1,6 @@
 import { ListRideUseCase } from './ListRideUseCase';
 import { Request, Response } from 'express';
-export class IListRideController {
+export class ListRideController {
   constructor(private listRideUseCase: ListRideUseCase) {}
 
   async handle(request: Request, response: Response): Promise<Response> {
