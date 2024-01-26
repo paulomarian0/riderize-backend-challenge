@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import { appRoutes } from './infra/routes';
+import { env } from '../helpers/env';
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = env.PORT ?? 3000;
 
 const app = express();
 
