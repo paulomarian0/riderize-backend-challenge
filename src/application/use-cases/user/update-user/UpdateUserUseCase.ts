@@ -6,7 +6,7 @@ interface IExecute extends IUpdateUserDTO {}
 export class UpdateUserUseCase {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute({ name, email }: IExecute) {
-    await this.userRepository.update({ name, email });
+  async execute({ id, name, email }: IExecute) {
+    await this.userRepository.update({ id, name, email });
   }
 }
