@@ -14,6 +14,7 @@ model user {
   id    String @id @default(uuid())
   name  String
   email String @unique
+  rides ride[]
 }
 
 model ride {
@@ -25,4 +26,5 @@ model ride {
   additional_information  String?
   start_place             String
   participants_limit      Int?
+  participants            user[]
 }
