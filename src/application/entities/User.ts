@@ -1,9 +1,3 @@
-// model user {
-//     id    String @id @default(uuid())
-//     name  String
-//     email String @unique
-//   }
-
 export class User {
   id: string;
   name: string;

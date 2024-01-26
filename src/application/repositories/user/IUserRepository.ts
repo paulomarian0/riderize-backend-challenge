@@ -6,7 +6,7 @@ import { User } from '../../entities/User';
 export interface IUserRepository {
   create(data: ICreateUserDTO): Promise<void>;
   count(data: IListUsersDTO): Promise<number>;
-  find(data: IListUsersDTO): Promise<User | undefined>;
+  find(data: IListUsersDTO): Promise<User | null>;
   list(data: IListUsersDTO): Promise<User[]>;
   update(data: IUpdateUserDTO): Promise<void>;
   delete(id: string): Promise<void>;
