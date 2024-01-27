@@ -6,7 +6,7 @@ interface IExecute extends IUpdateRideDTO {}
 export class UpdateRideUseCase {
   constructor(private rideRepository: IRideRepository) {}
 
-  async execute({ id, name, start_place, additional_information, participants_limit }: IExecute): Promise<void> {
+  async execute({ id, name, start_place, additional_information, participants_limit }: IExecute) {
     updateRideSchemaZodValidator.parse({
       id,
       name,
@@ -16,7 +16,7 @@ export class UpdateRideUseCase {
     });
 
     await this.validate({ id, name });
-    await this.rideRepository.update({
+    return await this.rideRepository.update({
       id,
       name,
       start_place,

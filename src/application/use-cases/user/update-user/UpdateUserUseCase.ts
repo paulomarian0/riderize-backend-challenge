@@ -11,7 +11,7 @@ export class UpdateUserUseCase {
     updateUserSchemaZodValidator.parse({ id, name, email });
 
     await this.validate({ id, name, email });
-    await this.userRepository.update({ id, name, email });
+    return await this.userRepository.update({ id, name, email });
   }
 
   async validate({ id, name, email }: IExecute) {

@@ -11,7 +11,7 @@ export class CreateUserUseCase {
     createUserSchemaZodValidator.parse({ name, email });
 
     await this.validate({ name, email });
-    await this.userRepository.create({ name, email });
+    return await this.userRepository.create({ name, email });
   }
 
   async validate({ email }: IExecute) {
