@@ -1,0 +1,360 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Users API"
+    },
+    "tags": [
+        {
+            "name": "Login",
+            "description": "Login"
+        },
+        {
+            "name": "User",
+            "description": "Create, Read, Update and Delete Users"
+        },
+        {
+            "name": "Ride",
+            "description": "Create, Read, Update and Delete Rides"
+        },
+        {
+            "name": "Event",
+            "description": "Create, Read and Delete Events"
+        }
+    ],
+    "security": [
+        {
+            "jwtAuth": []
+        }
+    ],
+    "paths": {
+        "/auth": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "User login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User logged in successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Creates a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User created successfully"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Lists all users",
+                "responses": {
+                    "200": {
+                        "description": "List of users retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Updates information of a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User information updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Deletes a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully"
+                    }
+                }
+            }
+        },
+        "/event": {
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Creates a new event",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Event"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Event created successfully"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Lists all events",
+                "responses": {
+                    "200": {
+                        "description": "List of events retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/event/{id}": {
+            "delete": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Deletes an event",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Event deleted successfully"
+                    }
+                }
+            }
+        },
+        "/ride": {
+            "post": {
+                "tags": [
+                    "Ride"
+                ],
+                "summary": "Creates a new ride",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Ride"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ride created successfully"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Ride"
+                ],
+                "summary": "Lists all rides",
+                "responses": {
+                    "200": {
+                        "description": "List of rides retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/ride/{id}": {
+            "delete": {
+                "tags": [
+                    "Ride"
+                ],
+                "summary": "Deletes a ride",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ride deleted successfully"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "LoginRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "email"
+                ]
+            },
+            "LoginResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Event": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "ride_id": {
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "type": "string"
+                    },
+                    "subscription_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "Ride": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "start_date_registration": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "end_date_registration": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "additional_information": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "start_place": {
+                        "type": "string"
+                    },
+                    "participants_limit": {
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "jwtAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
