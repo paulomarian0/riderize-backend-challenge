@@ -20,7 +20,7 @@ export class RideRepositoryImplementation implements IRideRepository {
     participants_limit,
     additional_information,
   }: ICreateRideDTO) {
-    await this.repository.ride.create({
+    return await this.repository.ride.create({
       data: {
         name,
         start_date,
@@ -37,7 +37,7 @@ export class RideRepositoryImplementation implements IRideRepository {
     return await this.repository.ride.count({
       where: {
         id: id ? { equals: id } : undefined,
-        name: name ? { contains: name } : undefined,
+        name: name ? { equals: name } : undefined,
         start_date: start_date ? { equals: start_date } : undefined,
       },
     });
@@ -47,7 +47,7 @@ export class RideRepositoryImplementation implements IRideRepository {
     return await this.repository.ride.findFirst({
       where: {
         id: id ? { equals: id } : undefined,
-        name: name ? { contains: name } : undefined,
+        name: name ? { equals: name } : undefined,
         start_date: start_date ? { equals: start_date } : undefined,
       },
     });
@@ -57,7 +57,7 @@ export class RideRepositoryImplementation implements IRideRepository {
     return await this.repository.ride.findMany({
       where: {
         id: id ? { equals: id } : undefined,
-        name: name ? { contains: name } : undefined,
+        name: name ? { equals: name } : undefined,
         start_date: start_date ? { equals: start_date } : undefined,
       },
       include: {
@@ -84,7 +84,7 @@ export class RideRepositoryImplementation implements IRideRepository {
   }
 
   async update({ id, name, start_place, participants_limit, additional_information }: IUpdateRideDTO) {
-    await this.repository.ride.update({
+    return await this.repository.ride.update({
       where: {
         id,
       },
@@ -98,7 +98,7 @@ export class RideRepositoryImplementation implements IRideRepository {
   }
 
   async delete(id: string) {
-    await this.repository.ride.delete({
+    return await this.repository.ride.delete({
       where: {
         id,
       },
