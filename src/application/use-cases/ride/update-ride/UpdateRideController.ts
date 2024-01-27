@@ -6,15 +6,11 @@ export class UpdateRideController {
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, end_date_registration, start_date, start_date_registration, start_place, additional_information, participants_limit } =
-      request.body;
+    const { name, start_place, additional_information, participants_limit } = request.body;
 
     await this.updateRideUseCase.execute({
       id,
       name,
-      end_date_registration,
-      start_date,
-      start_date_registration,
       start_place,
       additional_information,
       participants_limit,
