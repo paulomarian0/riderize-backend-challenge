@@ -12,7 +12,7 @@ export class UserRepositoryImplementation implements IUserRepository {
   }
 
   async create({ name, email }: ICreateUserDTO) {
-    await this.repository.user.create({
+    return await this.repository.user.create({
       data: {
         name,
         email,
@@ -71,7 +71,7 @@ export class UserRepositoryImplementation implements IUserRepository {
   }
 
   async update({ id, name, email }: IUpdateUserDTO) {
-    await this.repository.user.update({
+    return await this.repository.user.update({
       where: { id },
       data: {
         name,
@@ -81,7 +81,7 @@ export class UserRepositoryImplementation implements IUserRepository {
   }
 
   async delete(id: string) {
-    await this.repository.user.delete({
+    return await this.repository.user.delete({
       where: {
         id,
       },
