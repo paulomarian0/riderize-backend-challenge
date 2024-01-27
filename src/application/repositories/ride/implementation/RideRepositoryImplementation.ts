@@ -50,6 +50,26 @@ export class RideRepositoryImplementation implements IRideRepository {
         name: name ? { equals: name } : undefined,
         start_date: start_date ? { equals: start_date } : undefined,
       },
+      include: {
+        ride_participant: {
+          select: {
+            id: true,
+            subscription_date: true,
+            ride: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+        },
+      },
     });
   }
 

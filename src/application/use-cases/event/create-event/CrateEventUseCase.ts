@@ -1,10 +1,15 @@
 import AppError from '../../../adapter/error';
-import { ICreateEventDTO } from '../../../dtos/event/ICreateEvent';
-import { IEventRepository } from '../../../repositories/event/IEventRepository';
+import { ICreateEventDTO, createEventSchemaZodValidator } from '../../../dtos/event/ICreateEvent';
 import { IRideRepository } from '../../../repositories/ride/IRideRepository';
 import { IUserRepository } from '../../../repositories/user/IUserRepository';
+import { IEventRepository } from '../../../repositories/event/IEventRepository';
 
-interface IExecute extends ICreateEventDTO {}
+interface IExecute extends ICreateEventDTO {
+  ride_participant?: {
+    id: string;
+    subscription_date: Date;
+  }[];
+}
 
 export class CreateEventUseCase {
   constructor(
@@ -14,14 +19,23 @@ export class CreateEventUseCase {
   ) {}
 
   async execute({ ride_id, user_id, subscription_date }: IExecute) {
-    await this.validate({ ride_id, user_id, subscription_date });
+    createEventSchemaZodValidator.parse({ ride_id, user_id, subscription_date });
 
+    await this.validate({ ride_id, user_id, subscription_date });
     await this.eventRepository.create({ ride_id, user_id, subscription_date });
   }
 
   async validate({ ride_id, user_id, subscription_date }: IExecute) {
-    const findRide = await this.rideRepository.find({ id: ride_id });
+    const findRide = (await this.rideRepository.find({ id: ride_id })) as any;
     const findUser = await this.userRepository.find({ id: user_id });
+
+    if (findRide?.participants_limit ?? 0 >= (findRide?.ride_participant as any).length) {
+      throw new AppError({
+        title: 'Limit reached',
+        message: 'The limit of participants has already been reached',
+        statusCode: 400,
+      });
+    }
 
     if (!ride_id || !user_id || !subscription_date) {
       throw new AppError({
