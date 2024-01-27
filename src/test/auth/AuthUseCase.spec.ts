@@ -5,7 +5,7 @@ describe('auth use case tests', () => {
   const useCase = new AuthUseCase();
 
   test('should return a token when valid credentials are provided', async () => {
-    const token = await useCase.authenticate({ email: 'teste' });
+    const token = await useCase.authenticate({ email: 'string' });
     expect(token).toBeDefined();
   });
 
