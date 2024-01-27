@@ -13,7 +13,7 @@ Node.js and npm (or yarn)
 ### 1. Clone this repository:
 
 ```bash
-git clone https://github.com/<paulomarian0>/backend-challenge-riderize.git
+git clone https://github.com/paulomarian0/riderize-backend-challenge.git
 ```
 
 ### 2. Navigate to the project directory:
