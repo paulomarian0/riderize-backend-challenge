@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { env } from '../../../helpers/env';
 
 export class AuthUseCase {
-  async authenticate(email: string) {
+  async authenticate({ email }: { email: string }) {
     if (email === 'teste') {
       const token = jwt.sign({}, env.SECRET, { expiresIn: '1h' });
       return token;

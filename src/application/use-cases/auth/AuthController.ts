@@ -8,7 +8,7 @@ export class AuthController {
   async handle(req: Request, res: Response): Promise<void> {
     try {
       const { email } = req.body;
-      const token = await this.authUseCase.authenticate(email);
+      const token = await this.authUseCase.authenticate({ email });
       res.json({ token });
     } catch (error) {
       console.error(error);
