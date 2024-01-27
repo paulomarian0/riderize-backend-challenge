@@ -4,7 +4,7 @@ import { env } from '../../../helpers/env';
 
 export class AuthUseCase {
   async authenticate({ email }: { email: string }) {
-    if (email === 'teste') {
+    if (email === 'string') {
       const token = jwt.sign({}, env.SECRET, { expiresIn: '1h' });
       return token;
     }
